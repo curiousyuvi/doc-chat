@@ -5,9 +5,7 @@ import { db } from "@/lib/db";
 import { chats } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import puppeteer from "puppeteer";
 import React from "react";
 
 type Props = {
@@ -32,22 +30,22 @@ const ChatPage = async ({ params: { chatId } }: Props) => {
 
   const currentChat = _chats.find((chat) => chat.id === parseInt(chatId));
 
-  const renderWebsite = async (url: string) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(url);
+  // const renderWebsite = async (url: string) => {
+  //   const browser = await puppeteer.launch();
+  //   const page = await browser.newPage();
+  //   await page.goto(url);
 
-    // Get the content of the page
-    const content = await page.content();
+  //   // Get the content of the page
+  //   const content = await page.content();
 
-    await browser.close();
+  //   await browser.close();
 
-    // Update the div content with the website content
-    return content;
-    // Close the browser
-  };
+  //   // Update the div content with the website content
+  //   return content;
+  //   // Close the browser
+  // };
 
-  const htmlToRender = await renderWebsite(currentChat?.docUrl ?? "");
+  // const htmlToRender = await renderWebsite(currentChat?.docUrl ?? "");
 
   if (!session?.user) {
     return redirect("/sign-in");
