@@ -6,7 +6,6 @@ import { chats } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { signIn } from "next-auth/react";
 import LoginBtn from "@/components/LoginBtn";
 import SignoutBtn from "@/components/SignoutBtn";
 import DocUrlInputForm from "@/components/DocUrlInputForm";
