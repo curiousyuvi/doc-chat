@@ -10,6 +10,8 @@ import { signIn } from "next-auth/react";
 import LoginBtn from "@/components/LoginBtn";
 import SignoutBtn from "@/components/SignoutBtn";
 import DocUrlInputForm from "@/components/DocUrlInputForm";
+import Logo from "../../public/logo.png";
+import Image from "next/image";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -31,33 +33,25 @@ export default async function Home() {
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center">
             <div className="flex flex-col items-center">
+              <Image src={Logo} height={100} width={100} alt="" />
               <h1 className="text-5xl font-semibold">
-                {"📄"}Doc {"💬"}Chat
+                h<span className="text-purple-600">AI</span>ve
               </h1>
-              <h1 className="mt-2 text-xl">Chat with any Documentation</h1>
+              <h1 className="mt-2 text-xl">
+                {"💬"}Chat with any {"📄"}Documentation
+              </h1>
             </div>
           </div>
 
-          <div className="flex mt-2">
-            {isAuth && firstChat && (
-              <>
-                <Link href={`/chat/${firstChat.id}`}>
-                  <Button>
-                    Go to Chats <ArrowRight className="ml-2" />
-                  </Button>
-                </Link>
-                <div className="ml-3"></div>
-              </>
-            )}
-          </div>
+          <div className="flex mt-2"></div>
 
           <p className="max-w-xl mt-1 text-lg text-slate-600">
-            Doc Chat AI redefines collaboration by seamlessly integrating
+            Haive AI redefines collaboration by seamlessly integrating
             conversations with documentations. Experience a dynamic platform
             where your text comes to life through interactive discussions.
             Effortlessly connect and collaborate, turning static documentations
             into engaging dialogues. Welcome to a new era of documentation
-            collaboration with Doc Chat.
+            collaboration with Haive.
           </p>
 
           <div className="w-full mt-4">
@@ -65,7 +59,20 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <SignoutBtn />
+      <div className="flex items-center right-2 top-2 fixed">
+        {isAuth && firstChat && (
+          <>
+            <Link href={`/chat/${firstChat.id}`}>
+              <Button>
+                Go to Chats <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
+            <div className="ml-3"></div>
+          </>
+        )}
+
+        <SignoutBtn />
+      </div>
     </div>
   );
 }

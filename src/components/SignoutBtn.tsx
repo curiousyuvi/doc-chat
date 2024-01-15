@@ -8,7 +8,7 @@ export default function SignoutBtn() {
   if (session.data?.user)
     return (
       <button
-        className="px-4 py-2 rounded fixed right-2 top-2 flex items-center text-sm gap-2 border border-black"
+        className="px-4 py-2 rounded flex items-center text-sm gap-2 border border-black"
         onClick={() => signOut()}
       >
         <span className="font-medium"> Sign out</span>
